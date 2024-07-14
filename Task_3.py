@@ -2,10 +2,10 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import heapq
 
-# Step 1: Create the graph with weighted edges
+
 G = nx.Graph()
 
-# Nodes and edges for the transportation network with weights
+
 nodes = ["Station A", "Station B", "Station C", "Station D", "Station E"]
 edges = [
     ("Station A", "Station B", 10),
@@ -16,11 +16,10 @@ edges = [
     ("Station E", "Station A", 35)
 ]
 
-# Add nodes and edges to the graph
+
 G.add_nodes_from(nodes)
 G.add_weighted_edges_from(edges)
 
-# Step 2: Visualize the graph
 plt.figure(figsize=(10, 8))
 pos = nx.spring_layout(G)  # Layout for the visualization
 nx.draw(G, pos, with_labels=True, node_size=700, node_color="skyblue", font_size=15, font_weight="bold", edge_color="gray")
@@ -29,7 +28,7 @@ nx.draw_networkx_edge_labels(G, pos, edge_labels=labels)
 plt.title("Transportation Network Graph")
 plt.show()
 
-# Step 3: Implement Dijkstra's algorithm to find shortest paths
+# Implement Dijkstra's algorithm to find shortest paths
 def dijkstra(graph, start):
     queue = [(0, start, [])]
     seen = set()
@@ -54,13 +53,12 @@ def dijkstra(graph, start):
 
     return min_dist, paths
 
-# Find shortest paths from all nodes
 all_shortest_paths = {}
 for node in G.nodes:
     distances, paths = dijkstra(G, node)
     all_shortest_paths[node] = (distances, paths)
 
-# Step 4: Display the shortest paths and their respective costs
+# Display the shortest paths and their respective costs
 def display_shortest_paths(shortest_paths):
     for start_node, (distances, paths) in shortest_paths.items():
         print(f"Shortest paths from {start_node}:")
